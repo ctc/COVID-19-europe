@@ -127,13 +127,9 @@ def output( countries, days, data_out, type):
         writer.writerow(header)
         
         for day in days:
-            #print( day)
             row = [day]
             
             for x in range( 1, len(header)):
-                #print(header[x])
-                
-                #print( countries[header[x]][type][day])
                 row.append( countries[header[x]][type][day])
             
             writer.writerow(row)
@@ -160,16 +156,11 @@ def output_single( countries, days, data_out, country):
 
 def main():
     dir = sys.argv[1]
-    print( dir)
-    return
 
     countries, days = extract( countries_template, dir+IN_CONFIRMED, "confirmed")
     countries, days = extract( countries, dir+IN_RECOVERED, "recovered")
     countries, days = extract( countries, dir+IN_DEATHS, "deaths")
     
-    #print( days)
-
-    # output data
     output( countries, days, dir+OUT_CONFIRMED_TOTAL, "confirmed_total")
     output( countries, days, dir+OUT_RECOVERED_TOTAL, "recovered_total")
     output( countries, days, dir+OUT_DEATHS_TOTAL, "deaths_total")
@@ -181,19 +172,3 @@ def main():
     output_single( countries, days, dir+OUT_AUSTRIA, "Austria") 
     
 main();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
