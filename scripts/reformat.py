@@ -6,9 +6,9 @@ from datetime import datetime
 import sys
 
 
-IN_CONFIRMED= "/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv"
-IN_RECOVERED = "/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv"
-IN_DEATHS = "/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Deaths.csv"
+IN_CONFIRMED= "/COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv"
+IN_RECOVERED = "/COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv"
+IN_DEATHS = "/COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Deaths.csv"
 
 OUT_CONFIRMED_TOTAL = "/total_confirmed.csv"
 OUT_RECOVERED_TOTAL = "/total_recovered.csv"
