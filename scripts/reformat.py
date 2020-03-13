@@ -36,7 +36,7 @@ countries_template = {
     "Netherlands": { "population": 17417600},
     "Belgium": { "population": 11449656},
     "Greece": { "population": 10768193},
-    "Czech Republic": { "population": 10627794},
+    "Czechia": { "population": 10627794},
     "Sweden": { "population": 10319601},
     "Portugal": { "population": 10276617},
     "Azerbaijan": { "population": 10000000},
