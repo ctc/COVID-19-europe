@@ -18,6 +18,14 @@ OUT_CONFIRMED_POPULATION = "/by_population_confirmed.csv"
 OUT_RECOVERED_POPULATION = "/by_population_recovered.csv"
 OUT_DEATHS_POPULATION = "/by_population_deaths.csv"
 
+OUT_CONFIRMED_TOTAL_GROW = "/total_grow_confirmed.csv"
+OUT_RECOVERED_TOTAL_GROW = "/total_grow_recovered.csv"
+OUT_DEATHS_TOTAL_GROW = "/total_grow_deaths.csv"
+
+OUT_CONFIRMED_TOTAL_GROW_PERCENT = "/total_grow_percent_confirmed.csv"
+OUT_RECOVERED_TOTAL_GROW_PERCENT = "/total_grow_percent_recovered.csv"
+OUT_DEATHS_TOTAL_GROW_PERCENT = "/total_grow_percent_deaths.csv"
+
 OUT_AUSTRIA = "/austria.csv"
 
 # https://en.wikipedia.org/wiki/List_of_European_countries_by_population
@@ -99,7 +107,12 @@ def extract( countries, data_in, type):
     for country in data:
         if( country[1] in countries):
             dates_total = {}
+            dates_total_grow = {}
+            dates_total_grow_percent = {}
             dates_by_population = {}
+            last_data = 0
+            last_grow = 0
+            last_grow_percent = 0
             for x in range( 4, len(country)):
                 try:
                     dates_total[headers[x]] = int(country[x])
@@ -107,7 +120,24 @@ def extract( countries, data_in, type):
                 except Exception as e:
                     dates_total[headers[x]] = ""
                     dates_by_population[headers[x]] = ""
+                    
+                if( dates_total[headers[x]] != ""):
+                    dates_total_grow[headers[x]] = int(country[x]) - last_data
+                    last_grow = dates_total_grow[headers[x]]
+                    last_data = int(country[x])
+                    if( last_data > 0):
+                        dates_total_grow_percent[headers[x]] = dates_total_grow[headers[x]] / last_data
+                        last_grow_percent = dates_total_grow_percent[headers[x]]
+                    else:
+                        dates_total_grow_percent[headers[x]] = ""
+                else:
+                    dates_total_grow[headers[x]] = last_grow
+                    dates_total_grow_percent[headers[x]] = last_grow_percent
+                    
+                
             countries[country[1]][type+"_total"] = dates_total
+            countries[country[1]][type+"_total_grow"] = dates_total_grow
+            countries[country[1]][type+"_total_grow_percent"] = dates_total_grow_percent
             if( countries[country[1]]["population"] >= 100000): # filter out countries < 100.000 people
                 countries[country[1]][type+"_by_population"] = dates_by_population
             
@@ -164,6 +194,14 @@ def main():
     output( countries, days, dir+OUT_CONFIRMED_TOTAL, "confirmed_total")
     output( countries, days, dir+OUT_RECOVERED_TOTAL, "recovered_total")
     output( countries, days, dir+OUT_DEATHS_TOTAL, "deaths_total")
+
+    output( countries, days, dir+OUT_CONFIRMED_TOTAL_GROW, "confirmed_total_grow")
+    output( countries, days, dir+OUT_RECOVERED_TOTAL_GROW, "recovered_total_grow")
+    output( countries, days, dir+OUT_DEATHS_TOTAL_GROW, "deaths_total_grow")
+    
+    output( countries, days, dir+OUT_CONFIRMED_TOTAL_GROW_PERCENT, "confirmed_total_grow_percent")
+    output( countries, days, dir+OUT_RECOVERED_TOTAL_GROW_PERCENT, "recovered_total_grow_percent")
+    output( countries, days, dir+OUT_DEATHS_TOTAL_GROW_PERCENT, "deaths_total_grow_percent")
 
     output( countries, days, dir+OUT_CONFIRMED_POPULATION, "confirmed_by_population")
     output( countries, days, dir+OUT_RECOVERED_POPULATION, "recovered_by_population")
