@@ -89,8 +89,65 @@ countries_template = {
     "Vatican City": { "population": 799}
 }
 
+confirmed_fixes_dict = {'Italy|2020-03-12': 15113,
+                        'Spain|2020-03-12': 3146,
+                        'France|2020-03-12': 2876,
+                        'UK|2020-03-12': 590,
+                        'Germany|2020-03-12': 2745,
+                        'Argentina|2020-03-12': 19,
+                        'Australia|2020-03-12': 122,
+                        'Belgium|2020-03-12': 314,
+                        'Chile|2020-03-12': 23,
+                        'Colombia|2020-03-12': 9,
+                        'Greece|2020-03-12': 98,
+                        'Indonesia|2020-03-12': 34,
+                        'Ireland|2020-03-12': 43,
+                        'Japan|2020-03-12': 620,
+                        'Netherlands|2020-03-12': 503,
+                        'Qatar|2020-03-12': 262,
+                        'Singapore|2020-03-12': 178,
+                        'Switzerland|2020-03-12': 645
+                        }
+                        
+deaths_fixes_dict = {'Italy|2020-03-12': 1016,
+                     'Spain|2020-03-12': 86,
+                     'France|2020-03-12': 61,
+                     'UK|2020-03-12': 10,
+                     'Germany|2020-03-12': 6,
+                     'Argentina|2020-03-12': 1,
+                     'Australia|2020-03-12': 3,
+                     'Greece|2020-03-12': 1,
+                     'Indonesia|2020-03-12': 1,
+                     'Ireland|2020-03-12': 1,
+                     'Japan|2020-03-12': 15,
+                     'Netherlands|2020-03-12': 5,
+                     'Switzerland|2020-03-12': 4
+                     }
+                     
+recovered_fixes_dict = {'Italy|2020-03-12': 1258,
+                        'Spain|2020-03-12': 189,
+                        'France|2020-03-12': 12,
+                        'UK|2020-03-12': 19,
+                        'Germany|2020-03-12': 25
+                        }
 
-def extract( countries, data_in, type):
+def extract_fixes( fixes, fixes_dict, type):
+
+    for key in fixes_dict.keys():
+        country_to_be_fixed = key.split('|')[0]
+        date_to_be_fixed = key.split('|')[1]
+        value_to_be_fixed = fixes_dict[key]
+        
+        if( country_to_be_fixed not in fixes):
+            fixes[country_to_be_fixed] = {}
+        if( type not in fixes[country_to_be_fixed]):
+            fixes[country_to_be_fixed][type] = {}
+        fixes[country_to_be_fixed][type][date_to_be_fixed] = value_to_be_fixed
+
+    return fixes
+
+
+def extract( countries, fixes, data_in, type):
 
     with open( data_in, newline='') as csvfile:
         reader = csv.reader(csvfile, delimiter=',', quotechar='"')
@@ -106,40 +163,46 @@ def extract( countries, data_in, type):
 
     for country in data:
         if( country[1] in countries):
-            dates_total = {}
-            dates_total_grow = {}
-            dates_total_grow_percent = {}
-            dates_by_population = {}
-            last_data = 0
-            last_grow = 0
-            last_grow_percent = 0
-            for x in range( 4, len(country)):
-                try:
-                    dates_total[headers[x]] = int(country[x])
-                    dates_by_population[headers[x]] = float(country[x]) / float(countries[country[1]]["population"]) * 100000
-                except Exception as e:
-                    dates_total[headers[x]] = ""
-                    dates_by_population[headers[x]] = ""
-                    
-                if( dates_total[headers[x]] != ""):
-                    dates_total_grow[headers[x]] = int(country[x]) - last_data
-                    last_grow = dates_total_grow[headers[x]]
-                    last_data = int(country[x])
-                    if( last_data > 0):
-                        dates_total_grow_percent[headers[x]] = dates_total_grow[headers[x]] / last_data
-                        last_grow_percent = dates_total_grow_percent[headers[x]]
+            if( country[1] == country[0] or country[0] == ""):
+                dates_total = {}
+                dates_total_grow = {}
+                dates_total_grow_percent = {}
+                dates_by_population = {}
+                last_data = 0
+                last_grow = 0
+                last_grow_percent = 0
+                for x in range( 4, len(country)):
+                    if( country[1] in fixes and type in fixes[country[1]] and headers[x] in fixes[country[1]][type]):
+                        value = fixes[country[1]][type][headers[x]]
                     else:
-                        dates_total_grow_percent[headers[x]] = ""
-                else:
-                    dates_total_grow[headers[x]] = last_grow
-                    dates_total_grow_percent[headers[x]] = last_grow_percent
+                        value = country[x]
+            
+                    try:
+                        dates_total[headers[x]] = int(value)
+                        dates_by_population[headers[x]] = float(value) / float(countries[country[1]]["population"]) * 100000
+                    except Exception as e:
+                        dates_total[headers[x]] = ""
+                        dates_by_population[headers[x]] = ""
+                    
+                    if( dates_total[headers[x]] != ""):
+                        dates_total_grow[headers[x]] = int(value) - last_data
+                        last_grow = dates_total_grow[headers[x]]
+                        last_data = int(value)
+                        if( last_data > 0):
+                            dates_total_grow_percent[headers[x]] = dates_total_grow[headers[x]] / last_data
+                            last_grow_percent = dates_total_grow_percent[headers[x]]
+                        else:
+                            dates_total_grow_percent[headers[x]] = ""
+                    else:
+                        dates_total_grow[headers[x]] = last_grow
+                        dates_total_grow_percent[headers[x]] = last_grow_percent
                     
                 
-            countries[country[1]][type+"_total"] = dates_total
-            countries[country[1]][type+"_total_grow"] = dates_total_grow
-            countries[country[1]][type+"_total_grow_percent"] = dates_total_grow_percent
-            if( countries[country[1]]["population"] >= 100000): # filter out countries < 100.000 people
-                countries[country[1]][type+"_by_population"] = dates_by_population
+                countries[country[1]][type+"_total"] = dates_total
+                countries[country[1]][type+"_total_grow"] = dates_total_grow
+                countries[country[1]][type+"_total_grow_percent"] = dates_total_grow_percent
+                if( countries[country[1]]["population"] >= 100000): # filter out countries < 100.000 people
+                    countries[country[1]][type+"_by_population"] = dates_by_population
             
 
     return countries, days
@@ -187,10 +250,14 @@ def output_single( countries, days, data_out, country):
 def main():
     dir = sys.argv[1]
 
-    countries, days = extract( countries_template, dir+IN_CONFIRMED, "confirmed")
-    countries, days = extract( countries, dir+IN_RECOVERED, "recovered")
-    countries, days = extract( countries, dir+IN_DEATHS, "deaths")
-    
+    fixes = extract_fixes( {}, confirmed_fixes_dict, "confirmed")
+    fixes = extract_fixes( fixes, recovered_fixes_dict, "recovered")
+    fixes = extract_fixes( fixes, deaths_fixes_dict, "deaths")
+
+    countries, days = extract( countries_template, fixes, dir+IN_CONFIRMED, "confirmed")
+    countries, days = extract( countries, fixes, dir+IN_RECOVERED, "recovered")
+    countries, days = extract( countries, fixes, dir+IN_DEATHS, "deaths")
+
     output( countries, days, dir+OUT_CONFIRMED_TOTAL, "confirmed_total")
     output( countries, days, dir+OUT_RECOVERED_TOTAL, "recovered_total")
     output( countries, days, dir+OUT_DEATHS_TOTAL, "deaths_total")
