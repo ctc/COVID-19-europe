@@ -14,17 +14,20 @@ OUT_CONFIRMED_TOTAL = "/total_confirmed.csv"
 OUT_RECOVERED_TOTAL = "/total_recovered.csv"
 OUT_DEATHS_TOTAL = "/total_deaths.csv"
 
-OUT_CONFIRMED_POPULATION = "/by_population_confirmed.csv"
-OUT_RECOVERED_POPULATION = "/by_population_recovered.csv"
-OUT_DEATHS_POPULATION = "/by_population_deaths.csv"
-
-OUT_CONFIRMED_TOTAL_GROW = "/total_grow_confirmed.csv"
-OUT_RECOVERED_TOTAL_GROW = "/total_grow_recovered.csv"
-OUT_DEATHS_TOTAL_GROW = "/total_grow_deaths.csv"
-
 OUT_CONFIRMED_TOTAL_GROW_PERCENT = "/total_grow_percent_confirmed.csv"
 OUT_RECOVERED_TOTAL_GROW_PERCENT = "/total_grow_percent_recovered.csv"
 OUT_DEATHS_TOTAL_GROW_PERCENT = "/total_grow_percent_deaths.csv"
+
+OUT_CONFIRMED_BY_POPULATION = "/by_population_confirmed.csv"
+OUT_RECOVERED_BY_POPULATION = "/by_population_recovered.csv"
+OUT_DEATHS_BY_POPULATION = "/by_population_deaths.csv"
+
+OUT_CONFIRMED_BY_POPULATION_GROW_PERCENT = "/by_population_grow_percent_confirmed.csv"
+OUT_RECOVERED_BY_POPULATION_GROW_PERCENT = "/by_population_grow_percent_recovered.csv"
+OUT_DEATHS_BY_POPULATION_GROW_PERCENT = "/by_population_grow_percent_deaths.csv"
+
+
+
 
 OUT_AUSTRIA = "/austria.csv"
 
@@ -106,7 +109,7 @@ confirmed_fixes_dict = {'Italy|2020-03-12': 15113,
                         'Netherlands|2020-03-12': 503,
                         'Qatar|2020-03-12': 262,
                         'Singapore|2020-03-12': 178,
-                        'Switzerland|2020-03-12': 645
+                        'Switzerland|2020-03-12': 854
                         }
                         
 deaths_fixes_dict = {'Italy|2020-03-12': 1016,
@@ -135,7 +138,7 @@ def extract_fixes( fixes, fixes_dict, type):
 
     for key in fixes_dict.keys():
         country_to_be_fixed = key.split('|')[0]
-        date_to_be_fixed = key.split('|')[1]
+        date_to_be_fixed = datetime.strptime( key.split('|')[1], "%Y-%m-%d").strftime("%d.%m.%Y")
         value_to_be_fixed = fixes_dict[key]
         
         if( country_to_be_fixed not in fixes):
@@ -165,15 +168,18 @@ def extract( countries, fixes, data_in, type):
         if( country[1] in countries):
             if( country[1] == country[0] or country[0] == ""):
                 dates_total = {}
-                dates_total_grow = {}
                 dates_total_grow_percent = {}
                 dates_by_population = {}
+                dates_by_population_grow_percent = {}
+                
                 last_data = 0
-                last_grow = 0
+                last_data_by_population = 0
                 last_grow_percent = 0
+                last_grow_percent_by_population = 0
                 for x in range( 4, len(country)):
                     if( country[1] in fixes and type in fixes[country[1]] and headers[x] in fixes[country[1]][type]):
                         value = fixes[country[1]][type][headers[x]]
+                        print( "fixed: %s %s %s %s -> %s" % ( country[1], type, headers[x], country[x], value ))
                     else:
                         value = country[x]
             
@@ -185,24 +191,30 @@ def extract( countries, fixes, data_in, type):
                         dates_by_population[headers[x]] = ""
                     
                     if( dates_total[headers[x]] != ""):
-                        dates_total_grow[headers[x]] = int(value) - last_data
-                        last_grow = dates_total_grow[headers[x]]
-                        last_data = int(value)
-                        if( last_data > 0):
-                            dates_total_grow_percent[headers[x]] = dates_total_grow[headers[x]] / last_data
+                        if( last_data != 0):
+                            dates_total_grow_percent[headers[x]] = (dates_total[headers[x]] - last_data) / last_data * 100
                             last_grow_percent = dates_total_grow_percent[headers[x]]
+                            
+                            dates_by_population_grow_percent[headers[x]] = (dates_by_population[headers[x]] - last_data_by_population) / last_data_by_population * 100
+                            last_grow_percent_by_population = dates_by_population_grow_percent[headers[x]]
                         else:
-                            dates_total_grow_percent[headers[x]] = ""
+                            dates_total_grow_percent[headers[x]] = 0
+                            last_grow_percent = 0
+                            
+                            dates_by_population_grow_percent[headers[x]] = 0
+                            last_grow_percent_by_population = 0
+                        last_data = dates_total[headers[x]]
+                        last_data_by_population = dates_by_population[headers[x]]
                     else:
-                        dates_total_grow[headers[x]] = last_grow
                         dates_total_grow_percent[headers[x]] = last_grow_percent
-                    
+                        dates_by_population_grow_percent[headers[x]] = last_grow_percent_by_population
+                
                 
                 countries[country[1]][type+"_total"] = dates_total
-                countries[country[1]][type+"_total_grow"] = dates_total_grow
                 countries[country[1]][type+"_total_grow_percent"] = dates_total_grow_percent
                 if( countries[country[1]]["population"] >= 100000): # filter out countries < 100.000 people
                     countries[country[1]][type+"_by_population"] = dates_by_population
+                    countries[country[1]][type+"_by_population_grow_percent"] = dates_by_population_grow_percent
             
 
     return countries, days
@@ -234,7 +246,10 @@ def output_single( countries, days, data_out, country):
     with f:
         writer = csv.writer(f)
         header = [ "source", "confirmed_total", "recovered_total", "deaths_total",
-                "confirmed_by_population", "recovered_by_population", "deaths_by_population"]
+                "confirmed_by_population", "recovered_by_population", "deaths_by_population",
+                "confirmed_total_grow_percent", "recovered_total_grow_percent", "deaths_total_grow_percent",
+                "confirmed_by_population_grow_percent", "recovered_by_population_grow_percent", "deaths_by_population_grow_percent"
+            ] 
         
         writer.writerow(header)
         
@@ -262,17 +277,17 @@ def main():
     output( countries, days, dir+OUT_RECOVERED_TOTAL, "recovered_total")
     output( countries, days, dir+OUT_DEATHS_TOTAL, "deaths_total")
 
-    output( countries, days, dir+OUT_CONFIRMED_TOTAL_GROW, "confirmed_total_grow")
-    output( countries, days, dir+OUT_RECOVERED_TOTAL_GROW, "recovered_total_grow")
-    output( countries, days, dir+OUT_DEATHS_TOTAL_GROW, "deaths_total_grow")
-    
     output( countries, days, dir+OUT_CONFIRMED_TOTAL_GROW_PERCENT, "confirmed_total_grow_percent")
     output( countries, days, dir+OUT_RECOVERED_TOTAL_GROW_PERCENT, "recovered_total_grow_percent")
     output( countries, days, dir+OUT_DEATHS_TOTAL_GROW_PERCENT, "deaths_total_grow_percent")
 
-    output( countries, days, dir+OUT_CONFIRMED_POPULATION, "confirmed_by_population")
-    output( countries, days, dir+OUT_RECOVERED_POPULATION, "recovered_by_population")
-    output( countries, days, dir+OUT_DEATHS_POPULATION, "deaths_by_population")
+    output( countries, days, dir+OUT_CONFIRMED_BY_POPULATION, "confirmed_by_population")
+    output( countries, days, dir+OUT_RECOVERED_BY_POPULATION, "recovered_by_population")
+    output( countries, days, dir+OUT_DEATHS_BY_POPULATION, "deaths_by_population")
+    
+    output( countries, days, dir+OUT_CONFIRMED_BY_POPULATION_GROW_PERCENT, "confirmed_by_population_grow_percent")
+    output( countries, days, dir+OUT_RECOVERED_BY_POPULATION_GROW_PERCENT, "recovered_by_population_grow_percent")
+    output( countries, days, dir+OUT_DEATHS_BY_POPULATION_GROW_PERCENT, "deaths_by_population_grow_percent")
     
     output_single( countries, days, dir+OUT_AUSTRIA, "Austria") 
     
