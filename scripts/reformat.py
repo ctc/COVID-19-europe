@@ -6,9 +6,9 @@ from datetime import datetime
 import sys
 
 
-IN_CONFIRMED= "/COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv"
+IN_CONFIRMED= "/COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"
 IN_RECOVERED = "/COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv"
-IN_DEATHS = "/COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Deaths.csv"
+IN_DEATHS = "/COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"
 
 OUT_CONFIRMED_TOTAL = "/total_confirmed.csv"
 OUT_RECOVERED_TOTAL = "/total_recovered.csv"
@@ -27,69 +27,82 @@ OUT_RECOVERED_BY_POPULATION_GROW_PERCENT = "/by_population_grow_percent_recovere
 OUT_DEATHS_BY_POPULATION_GROW_PERCENT = "/by_population_grow_percent_deaths.csv"
 
 
+# top five
+OUT_TOP5_CONFIRMED_TOTAL = "/top5_total_confirmed.csv"
+OUT_TOP5_DEATHS_TOTAL = "/top5_total_deaths.csv"
 
+OUT_TOP5_CONFIRMED_TOTAL_GROW_PERCENT = "/top5_total_grow_percent_confirmed.csv"
+OUT_TOP5_DEATHS_TOTAL_GROW_PERCENT = "/top5_total_grow_percent_deaths.csv"
+
+OUT_TOP5_CONFIRMED_BY_POPULATION = "/top5_by_population_confirmed.csv"
+OUT_TOP5_DEATHS_BY_POPULATION = "/top5_by_population_deaths.csv"
+
+OUT_TOP5_CONFIRMED_BY_POPULATION_GROW_PERCENT = "/top5_by_population_grow_percent_confirmed.csv"
+OUT_TOP5_DEATHS_BY_POPULATION_GROW_PERCENT = "/top5_by_population_grow_percent_deaths.csv"
 
 OUT_AUSTRIA = "/austria.csv"
 
 # https://en.wikipedia.org/wiki/List_of_European_countries_by_population
 countries_template = {
-    "Russia": { "population": 146877088},
-    "Germany": { "population": 82887000},
-    "Turkey": { "population": 82003882},
-    "France": { "population": 67372000},
-    "United Kingdom": { "population": 66435550},
-    "Italy": { "population": 60390560},
-    "Spain": { "population": 46733038},
-    "Poland": { "population": 38433600},
-    "Ukraine": { "population": 37289000},
-    "Romania": { "population": 19523621},
-    "Kazakhstan": { "population": 18356900},
-    "Netherlands": { "population": 17417600},
-    "Belgium": { "population": 11449656},
-    "Greece": { "population": 10768193},
-    "Czechia": { "population": 10627794},
-    "Sweden": { "population": 10319601},
-    "Portugal": { "population": 10276617},
-    "Azerbaijan": { "population": 10000000},
-    "Hungary": { "population": 9771000},
-    "Belarus": { "population": 9477100},
-    "Austria": { "population": 8857960},
-    "Switzerland": { "population": 8526932},
-    "Bulgaria": { "population": 7000039},
-    "Serbia": { "population": 6963764},
-    "Denmark": { "population": 5806015},
-    "Finland": { "population": 5522015},
-    "Slovakia": { "population": 5445087},
-    "Norway": { "population": 5323933},
-    "Ireland": { "population": 4921500},
-    "Croatia": { "population": 4105493},
-    "Georgia": { "population": 3729600},
-    "Bosnia and Herzegovina": { "population": 3511372},
-    "Armenia": { "population": 2969200},
-    "Albania": { "population": 2870324},
-    "Lithuania": { "population": 2791903},
-    "Moldova": { "population": 2681735},
-    "North Macedonia": { "population": 2075301},
-    "Slovenia": { "population": 2070050},
-    "Latvia": { "population": 1921300},
-    "Kosovo": { "population": 1798506},
-    "Estonia": { "population": 1319133},
-    "Cyprus": { "population": 8642},
-    "Montenegro": { "population": 622359},
-    "Luxembourg": { "population": 602005},
-    "Malta": { "population": 475701},
-    "Iceland": { "population": 35562},
-    "Jersey": { "population": 1055},
-    "Isle of Man": { "population": 83314},
-    "Andorra": { "population": 74794},
-    "Guernsey": { "population": 62063},
-    "Faroe Islands": { "population": 51237},
-    "Monaco": { "population": 383},
-    "Liechtenstein": { "population": 38201},
-    "Gibraltar": { "population": 33573},
-    "San Marino": { "population": 33407},
-    "Åland Islands": { "population": 29489},
-    "Vatican City": { "population": 799}
+    "Russia": { "population": 146877088, "eu": True},
+    "Germany": { "population": 82887000, "eu": True, "top5": True},
+    "Turkey": { "population": 82003882, "eu": True},
+    "France": { "population": 67372000, "eu": True},
+    "United Kingdom": { "population": 66435550, "eu": True},
+    "Italy": { "population": 60390560, "eu": True, "top5": True},
+    "Spain": { "population": 46733038, "eu": True, "top5": True},
+    "Poland": { "population": 38433600, "eu": True},
+    "Ukraine": { "population": 37289000, "eu": True},
+    "Romania": { "population": 19523621, "eu": True},
+    "Kazakhstan": { "population": 18356900, "eu": True},
+    "Netherlands": { "population": 17417600, "eu": True},
+    "Belgium": { "population": 11449656, "eu": True},
+    "Greece": { "population": 10768193, "eu": True},
+    "Czechia": { "population": 10627794, "eu": True},
+    "Sweden": { "population": 10319601, "eu": True},
+    "Portugal": { "population": 10276617, "eu": True},
+    "Azerbaijan": { "population": 10000000, "eu": True},
+    "Hungary": { "population": 9771000, "eu": True},
+    "Belarus": { "population": 9477100, "eu": True},
+    "Austria": { "population": 8857960, "eu": True},
+    "Switzerland": { "population": 8526932, "eu": True},
+    "Bulgaria": { "population": 7000039, "eu": True},
+    "Serbia": { "population": 6963764, "eu": True},
+    "Denmark": { "population": 5806015, "eu": True},
+    "Finland": { "population": 5522015, "eu": True},
+    "Slovakia": { "population": 5445087, "eu": True},
+    "Norway": { "population": 5323933, "eu": True},
+    "Ireland": { "population": 4921500, "eu": True},
+    "Croatia": { "population": 4105493, "eu": True},
+    "Georgia": { "population": 3729600, "eu": True},
+    "Bosnia and Herzegovina": { "population": 3511372, "eu": True},
+    "Armenia": { "population": 2969200, "eu": True},
+    "Albania": { "population": 2870324, "eu": True},
+    "Lithuania": { "population": 2791903, "eu": True},
+    "Moldova": { "population": 2681735, "eu": True},
+    "North Macedonia": { "population": 2075301, "eu": True},
+    "Slovenia": { "population": 2070050, "eu": True},
+    "Latvia": { "population": 1921300, "eu": True},
+    "Kosovo": { "population": 1798506, "eu": True},
+    "Estonia": { "population": 1319133, "eu": True},
+    "Cyprus": { "population": 8642, "eu": True},
+    "Montenegro": { "population": 622359, "eu": True},
+    "Luxembourg": { "population": 602005, "eu": True},
+    "Malta": { "population": 475701, "eu": True},
+    "Iceland": { "population": 35562, "eu": True},
+    "Jersey": { "population": 1055, "eu": True},
+    "Isle of Man": { "population": 83314, "eu": True},
+    "Andorra": { "population": 74794, "eu": True},
+    "Guernsey": { "population": 62063, "eu": True},
+    "Faroe Islands": { "population": 51237, "eu": True},
+    "Monaco": { "population": 383, "eu": True},
+    "Liechtenstein": { "population": 38201, "eu": True},
+    "Gibraltar": { "population": 33573, "eu": True},
+    "San Marino": { "population": 33407, "eu": True},
+    "Åland Islands": { "population": 29489, "eu": True},
+    "Vatican City": { "population": 799, "eu": True},
+    "US": { "population":  329968629, "top5": True},
+    "China": { "population":  1427647786, "top5": True}
 }
 
 confirmed_fixes_dict = {'Italy|2020-03-12': 15113,
@@ -163,70 +176,91 @@ def extract( countries, fixes, data_in, type):
         headers[x] = datetime.strptime( headers[x], "%m/%d/%y").strftime("%d.%m.%Y")
         days.append( headers[x])
 
-
+    # sum up countries
+    sum_countries = {}
     for country in data:
-        if( country[1] in countries):
-            if( country[1] == country[0] or country[0] == ""):
-                dates_total = {}
-                dates_total_grow_percent = {}
-                dates_by_population = {}
-                dates_by_population_grow_percent = {}
-                
-                last_data = 0
-                last_data_by_population = 0
-                last_grow_percent = 0
-                last_grow_percent_by_population = 0
-                for x in range( 4, len(country)):
-                    if( country[1] in fixes and type in fixes[country[1]] and headers[x] in fixes[country[1]][type]):
-                        value = fixes[country[1]][type][headers[x]]
-                        print( "fixed: %s %s %s %s -> %s" % ( country[1], type, headers[x], country[x], value ))
-                    else:
-                        value = country[x]
+        for x in range( 4, len(country)):
+            if(( country[1] == country[0] or country[0] == "") and country[1] in fixes and type in fixes[country[1]] and headers[x] in fixes[country[1]][type]):
+                value = fixes[country[1]][type][headers[x]]
+            else:
+                if( country[x] == ''):
+                    value = 0
+                else:
+                    value = int( country[x])
+        
+            if( country[1] not in sum_countries):
+                sum_countries[country[1]] = {}
             
-                    try:
-                        dates_total[headers[x]] = int(value)
-                        dates_by_population[headers[x]] = float(value) / float(countries[country[1]]["population"]) * 100000
-                    except Exception as e:
-                        dates_total[headers[x]] = ""
-                        dates_by_population[headers[x]] = ""
-                    
-                    if( dates_total[headers[x]] != ""):
-                        if( last_data != 0):
-                            dates_total_grow_percent[headers[x]] = (dates_total[headers[x]] - last_data) / last_data * 100
-                            last_grow_percent = dates_total_grow_percent[headers[x]]
-                            
-                            dates_by_population_grow_percent[headers[x]] = (dates_by_population[headers[x]] - last_data_by_population) / last_data_by_population * 100
-                            last_grow_percent_by_population = dates_by_population_grow_percent[headers[x]]
-                        else:
-                            dates_total_grow_percent[headers[x]] = 0
-                            last_grow_percent = 0
-                            
-                            dates_by_population_grow_percent[headers[x]] = 0
-                            last_grow_percent_by_population = 0
-                        last_data = dates_total[headers[x]]
-                        last_data_by_population = dates_by_population[headers[x]]
-                    else:
-                        dates_total_grow_percent[headers[x]] = last_grow_percent
-                        dates_by_population_grow_percent[headers[x]] = last_grow_percent_by_population
-                
-                
-                countries[country[1]][type+"_total"] = dates_total
-                countries[country[1]][type+"_total_grow_percent"] = dates_total_grow_percent
-                if( countries[country[1]]["population"] >= 100000): # filter out countries < 100.000 people
-                    countries[country[1]][type+"_by_population"] = dates_by_population
-                    countries[country[1]][type+"_by_population_grow_percent"] = dates_by_population_grow_percent
-            
+            if( headers[x] not in sum_countries[country[1]]):
+                sum_countries[country[1]][headers[x]] = value
+            else:
+                sum_countries[country[1]][headers[x]] += value
 
+    
+    for country in sum_countries:
+        if( country not in countries):
+            continue
+        
+        dates_total = {}
+        dates_total_grow_percent = {}
+        dates_by_population = {}
+        dates_by_population_grow_percent = {}
+                
+        last_data = 0
+        last_data_by_population = 0
+        last_grow_percent = 0
+        last_grow_percent_by_population = 0
+        
+        for day in days:
+            value = sum_countries[country][day]
+            
+            try:
+                dates_total[day] = value
+                if( dates_total[day] == 0):
+                    dates_total[day] = ""
+                dates_by_population[day] = float(value) / float(countries[country]["population"]) * 100000
+                if( dates_by_population[day] == 0):
+                    dates_by_population[day] = ""
+            except Exception as e:
+                dates_total[day] = ""
+                dates_by_population[day] = ""
+                    
+            if( dates_total[day] != ""):
+                if( last_data != 0):
+                    dates_total_grow_percent[day] = (dates_total[day] - last_data) / last_data * 100
+                    last_grow_percent = dates_total_grow_percent[day]
+                            
+                    dates_by_population_grow_percent[day] = (dates_by_population[day] - last_data_by_population) / last_data_by_population * 100
+                    last_grow_percent_by_population = dates_by_population_grow_percent[day]
+                else:
+                    dates_total_grow_percent[day] = 0
+                    last_grow_percent = 0
+                            
+                    dates_by_population_grow_percent[day] = 0
+                    last_grow_percent_by_population = 0
+                last_data = dates_total[day]
+                last_data_by_population = dates_by_population[day]
+            else:
+                dates_total_grow_percent[day] = last_grow_percent
+                dates_by_population_grow_percent[day] = last_grow_percent_by_population
+                
+                
+        countries[country][type+"_total"] = dates_total
+        countries[country][type+"_total_grow_percent"] = dates_total_grow_percent
+        if( countries[country]["population"] >= 100000): # filter out countries < 100.000 people
+            countries[country][type+"_by_population"] = dates_by_population
+            countries[country][type+"_by_population_grow_percent"] = dates_by_population_grow_percent
+            
     return countries, days
 
-def output( countries, days, data_out, type):
+def output( countries, days, data_out, type, filter):
     
     f = open( data_out, 'w')
     with f:
         writer = csv.writer(f)
         header = ["country"]
         for country in countries:
-            if( type in countries[country]):
+            if( filter in countries[country] and countries[country][filter] == True and type in countries[country]):
                 header.append( country)
         
         writer.writerow(header)
@@ -235,6 +269,8 @@ def output( countries, days, data_out, type):
             row = [day]
             
             for x in range( 1, len(header)):
+                #if( filter in countries[country] and countries[country][filter] == True):
+                #    row.append( countries[header[x]][type][day])
                 row.append( countries[header[x]][type][day])
             
             writer.writerow(row)
@@ -245,11 +281,16 @@ def output_single( countries, days, data_out, country):
     f = open( data_out, 'w')
     with f:
         writer = csv.writer(f)
-        header = [ "source", "confirmed_total", "recovered_total", "deaths_total",
-                "confirmed_by_population", "recovered_by_population", "deaths_by_population",
-                "confirmed_total_grow_percent", "recovered_total_grow_percent", "deaths_total_grow_percent",
-                "confirmed_by_population_grow_percent", "recovered_by_population_grow_percent", "deaths_by_population_grow_percent"
+        header = [ "source", "confirmed_total", "deaths_total",
+                "confirmed_by_population", "deaths_by_population",
+                "confirmed_total_grow_percent", "deaths_total_grow_percent",
+                "confirmed_by_population_grow_percent", "deaths_by_population_grow_percent"
             ] 
+        #header = [ "source", "confirmed_total", "recovered_total", "deaths_total",
+        #        "confirmed_by_population", "recovered_by_population", "deaths_by_population",
+        #        "confirmed_total_grow_percent", "recovered_total_grow_percent", "deaths_total_grow_percent",
+        #        "confirmed_by_population_grow_percent", "recovered_by_population_grow_percent", "deaths_by_population_grow_percent"
+        #    ] 
         
         writer.writerow(header)
         
@@ -266,28 +307,38 @@ def main():
     dir = sys.argv[1]
 
     fixes = extract_fixes( {}, confirmed_fixes_dict, "confirmed")
-    fixes = extract_fixes( fixes, recovered_fixes_dict, "recovered")
+    #fixes = extract_fixes( fixes, recovered_fixes_dict, "recovered")
     fixes = extract_fixes( fixes, deaths_fixes_dict, "deaths")
 
     countries, days = extract( countries_template, fixes, dir+IN_CONFIRMED, "confirmed")
-    countries, days = extract( countries, fixes, dir+IN_RECOVERED, "recovered")
+    #countries, days = extract( countries, fixes, dir+IN_RECOVERED, "recovered")
     countries, days = extract( countries, fixes, dir+IN_DEATHS, "deaths")
 
-    output( countries, days, dir+OUT_CONFIRMED_TOTAL, "confirmed_total")
-    output( countries, days, dir+OUT_RECOVERED_TOTAL, "recovered_total")
-    output( countries, days, dir+OUT_DEATHS_TOTAL, "deaths_total")
+    output( countries, days, dir+OUT_CONFIRMED_TOTAL, "confirmed_total", "eu")
+    #output( countries, days, dir+OUT_RECOVERED_TOTAL, "recovered_total")
+    output( countries, days, dir+OUT_DEATHS_TOTAL, "deaths_total", "eu")
 
-    output( countries, days, dir+OUT_CONFIRMED_TOTAL_GROW_PERCENT, "confirmed_total_grow_percent")
-    output( countries, days, dir+OUT_RECOVERED_TOTAL_GROW_PERCENT, "recovered_total_grow_percent")
-    output( countries, days, dir+OUT_DEATHS_TOTAL_GROW_PERCENT, "deaths_total_grow_percent")
+    output( countries, days, dir+OUT_CONFIRMED_TOTAL_GROW_PERCENT, "confirmed_total_grow_percent", "eu")
+    #output( countries, days, dir+OUT_RECOVERED_TOTAL_GROW_PERCENT, "recovered_total_grow_percent")
+    output( countries, days, dir+OUT_DEATHS_TOTAL_GROW_PERCENT, "deaths_total_grow_percent", "eu")
 
-    output( countries, days, dir+OUT_CONFIRMED_BY_POPULATION, "confirmed_by_population")
-    output( countries, days, dir+OUT_RECOVERED_BY_POPULATION, "recovered_by_population")
-    output( countries, days, dir+OUT_DEATHS_BY_POPULATION, "deaths_by_population")
+    output( countries, days, dir+OUT_CONFIRMED_BY_POPULATION, "confirmed_by_population", "eu")
+    #output( countries, days, dir+OUT_RECOVERED_BY_POPULATION, "recovered_by_population")
+    output( countries, days, dir+OUT_DEATHS_BY_POPULATION, "deaths_by_population", "eu")
     
-    output( countries, days, dir+OUT_CONFIRMED_BY_POPULATION_GROW_PERCENT, "confirmed_by_population_grow_percent")
-    output( countries, days, dir+OUT_RECOVERED_BY_POPULATION_GROW_PERCENT, "recovered_by_population_grow_percent")
-    output( countries, days, dir+OUT_DEATHS_BY_POPULATION_GROW_PERCENT, "deaths_by_population_grow_percent")
+    output( countries, days, dir+OUT_CONFIRMED_BY_POPULATION_GROW_PERCENT, "confirmed_by_population_grow_percent", "eu")
+    #output( countries, days, dir+OUT_RECOVERED_BY_POPULATION_GROW_PERCENT, "recovered_by_population_grow_percent")
+    output( countries, days, dir+OUT_DEATHS_BY_POPULATION_GROW_PERCENT, "deaths_by_population_grow_percent", "eu")
+
+
+    output( countries, days, dir+OUT_TOP5_CONFIRMED_TOTAL, "confirmed_total", "top5")
+    output( countries, days, dir+OUT_TOP5_DEATHS_TOTAL, "deaths_total", "top5")
+    output( countries, days, dir+OUT_TOP5_CONFIRMED_TOTAL_GROW_PERCENT, "confirmed_total_grow_percent", "top5")
+    output( countries, days, dir+OUT_TOP5_DEATHS_TOTAL_GROW_PERCENT, "deaths_total_grow_percent", "top5")
+    output( countries, days, dir+OUT_TOP5_CONFIRMED_BY_POPULATION, "confirmed_by_population", "top5")
+    output( countries, days, dir+OUT_TOP5_DEATHS_BY_POPULATION, "deaths_by_population", "top5")
+    output( countries, days, dir+OUT_TOP5_CONFIRMED_BY_POPULATION_GROW_PERCENT, "confirmed_by_population_grow_percent", "top5")
+    output( countries, days, dir+OUT_TOP5_DEATHS_BY_POPULATION_GROW_PERCENT, "deaths_by_population_grow_percent", "top5")
     
     output_single( countries, days, dir+OUT_AUSTRIA, "Austria") 
     
