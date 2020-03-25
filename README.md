@@ -81,14 +81,40 @@ data source: https://github.com/CSSEGISandData/COVID-19
 </div>
 
 # Europe
+<table>
+<tr>
+<td>
 <iframe title="COVID-19 Europe confirmed per 100k" aria-label="Interactive line chart" id="datawrapper-chart-SN4FJ" src="//datawrapper.dwcdn.net/SN4FJ/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
 </script>
+</td>
+<td>
+<iframe title="COVID-19 Europe confirmed per 100k LOG" aria-label="Interactive line chart" id="datawrapper-chart-JTXz2" src="//datawrapper.dwcdn.net/JTXz2/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
+</script>
+</td>
+</tr>
+</table>
 
+<div class="center">
 <iframe title="COVID-19 Europe confirmed per 100k growth (%)" aria-label="Interactive line chart" id="datawrapper-chart-VtJng" src="//datawrapper.dwcdn.net/VtJng/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
 </script>
+</div>
 
+<table>
+<tr>
+<td>
 <iframe title="COVID-19 Europe confirmed" aria-label="Interactive line chart" id="datawrapper-chart-DwGRD" src="//datawrapper.dwcdn.net/DwGRD/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
 </script>
+</td>
+<td>
+<iframe title="COVID-19 Europe confirmed LOG" aria-label="Interactive line chart" id="datawrapper-chart-8enjf" src="//datawrapper.dwcdn.net/8enjf/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
+</script>
+</td>
+</tr>
+</table>
 
+<div class="center">
 <iframe title="COVID-19 Europe confirmed growth (%)" aria-label="Interactive line chart" id="datawrapper-chart-RiRAR" src="//datawrapper.dwcdn.net/RiRAR/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
 </script>
+</div>
+
+
