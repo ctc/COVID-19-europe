@@ -24,24 +24,61 @@ data source: https://github.com/CSSEGISandData/COVID-19
 </script>
 </div>
 
+<table>
+<tr>
+<td>
 <iframe title="COVID-19 Austria" aria-label="Interactive line chart" id="datawrapper-chart-9V1Qg" src="//datawrapper.dwcdn.net/9V1Qg/5/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
 </script>
+</td>
+<td>
+<iframe title="COVID-19 Austria LOG" aria-label="Interactive line chart" id="datawrapper-chart-E4Ikz" src="//datawrapper.dwcdn.net/E4Ikz/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
+</script>
+</td>
+</tr>
+</table>
 
+
+<div class="center">
 <iframe title="COVID-19 Austria growth (%)" aria-label="Interactive line chart" id="datawrapper-chart-pRVi6" src="//datawrapper.dwcdn.net/pRVi6/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
 </script>
+</div>
 
 # Austria & Neighbours
+<table>
+<tr>
+<td>
 <iframe title="COVID-19 Austria &amp; Neighbours confirmed per 100k " aria-label="Interactive line chart" id="datawrapper-chart-KjJt5" src="//datawrapper.dwcdn.net/KjJt5/10/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
 </script>
+</td>
+<td>
+<iframe title="COVID-19 Austria &amp; Neighbours confirmed per 100k  LOG" aria-label="Interactive line chart" id="datawrapper-chart-GfdqM" src="//datawrapper.dwcdn.net/GfdqM/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
+</script>
+</td>
+</tr>
+</table>
 
+<div class="center">
 <iframe title="COVID-19 Austria &amp; Neighbours confirmed per 100k growth (%)" aria-label="Interactive line chart" id="datawrapper-chart-9KjIs" src="//datawrapper.dwcdn.net/9KjIs/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
 </script>
+</div>
 
+<table>
+<tr>
+<td>
 <iframe title="COVID-19 Austria &amp; Neighbours confirmed" aria-label="Interactive line chart" id="datawrapper-chart-aGZ6E" src="//datawrapper.dwcdn.net/aGZ6E/9/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
 </script>
+</td>
+<td>
+<iframe title="COVID-19 Austria &amp; Neighbours confirmed LOG" aria-label="Interactive line chart" id="datawrapper-chart-fqXb9" src="//datawrapper.dwcdn.net/fqXb9/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
+</script>
+</td>
+</tr>
+</table>
 
+<div class="center">
 <iframe title="COVID-19 Austria &amp; Neighbours confirmed growth (%)" aria-label="Interactive line chart" id="datawrapper-chart-rnOmS" src="//datawrapper.dwcdn.net/rnOmS/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
 </script>
+</div>
 
 # Europe
 <iframe title="COVID-19 Europe confirmed per 100k" aria-label="Interactive line chart" id="datawrapper-chart-SN4FJ" src="//datawrapper.dwcdn.net/SN4FJ/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
