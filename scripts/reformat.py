@@ -7,7 +7,7 @@ import sys
 
 
 IN_CONFIRMED= "/COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"
-IN_RECOVERED = "/COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv"
+IN_RECOVERED = "/COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv"
 IN_DEATHS = "/COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"
 
 OUT_CONFIRMED_TOTAL = "/total_confirmed.csv"
@@ -281,16 +281,16 @@ def output_single( countries, days, data_out, country):
     f = open( data_out, 'w')
     with f:
         writer = csv.writer(f)
-        header = [ "source", "confirmed_total", "deaths_total",
-                "confirmed_by_population", "deaths_by_population",
-                "confirmed_total_grow_percent", "deaths_total_grow_percent",
-                "confirmed_by_population_grow_percent", "deaths_by_population_grow_percent"
-            ] 
-        #header = [ "source", "confirmed_total", "recovered_total", "deaths_total",
-        #        "confirmed_by_population", "recovered_by_population", "deaths_by_population",
-        #        "confirmed_total_grow_percent", "recovered_total_grow_percent", "deaths_total_grow_percent",
-        #        "confirmed_by_population_grow_percent", "recovered_by_population_grow_percent", "deaths_by_population_grow_percent"
+        #header = [ "source", "confirmed_total", "deaths_total",
+        #        "confirmed_by_population", "deaths_by_population",
+        #        "confirmed_total_grow_percent", "deaths_total_grow_percent",
+        #        "confirmed_by_population_grow_percent", "deaths_by_population_grow_percent"
         #    ] 
+        header = [ "source", "confirmed_total", "recovered_total", "deaths_total",
+                "confirmed_by_population", "recovered_by_population", "deaths_by_population",
+                "confirmed_total_grow_percent", "recovered_total_grow_percent", "deaths_total_grow_percent",
+                "confirmed_by_population_grow_percent", "recovered_by_population_grow_percent", "deaths_by_population_grow_percent"
+            ] 
         
         writer.writerow(header)
         
@@ -302,6 +302,13 @@ def output_single( countries, days, data_out, country):
             
             writer.writerow(row)
 
+def sort( unsorted):
+    countries = {}
+
+    for key in sorted( unsorted.keys()):
+        countries[key] = unsorted[key]
+
+    return countries
 
 def main():
     dir = sys.argv[1]
@@ -310,24 +317,26 @@ def main():
     #fixes = extract_fixes( fixes, recovered_fixes_dict, "recovered")
     fixes = extract_fixes( fixes, deaths_fixes_dict, "deaths")
 
-    countries, days = extract( countries_template, fixes, dir+IN_CONFIRMED, "confirmed")
-    #countries, days = extract( countries, fixes, dir+IN_RECOVERED, "recovered")
+    countries = sort( countries_template)
+
+    countries, days = extract( countries, fixes, dir+IN_CONFIRMED, "confirmed")
+    countries, days = extract( countries, fixes, dir+IN_RECOVERED, "recovered")
     countries, days = extract( countries, fixes, dir+IN_DEATHS, "deaths")
 
     output( countries, days, dir+OUT_CONFIRMED_TOTAL, "confirmed_total", "eu")
-    #output( countries, days, dir+OUT_RECOVERED_TOTAL, "recovered_total")
+    output( countries, days, dir+OUT_RECOVERED_TOTAL, "recovered_total", "eu")
     output( countries, days, dir+OUT_DEATHS_TOTAL, "deaths_total", "eu")
 
     output( countries, days, dir+OUT_CONFIRMED_TOTAL_GROW_PERCENT, "confirmed_total_grow_percent", "eu")
-    #output( countries, days, dir+OUT_RECOVERED_TOTAL_GROW_PERCENT, "recovered_total_grow_percent")
+    output( countries, days, dir+OUT_RECOVERED_TOTAL_GROW_PERCENT, "recovered_total_grow_percent", "eu")
     output( countries, days, dir+OUT_DEATHS_TOTAL_GROW_PERCENT, "deaths_total_grow_percent", "eu")
 
     output( countries, days, dir+OUT_CONFIRMED_BY_POPULATION, "confirmed_by_population", "eu")
-    #output( countries, days, dir+OUT_RECOVERED_BY_POPULATION, "recovered_by_population")
+    output( countries, days, dir+OUT_RECOVERED_BY_POPULATION, "recovered_by_population", "eu")
     output( countries, days, dir+OUT_DEATHS_BY_POPULATION, "deaths_by_population", "eu")
     
     output( countries, days, dir+OUT_CONFIRMED_BY_POPULATION_GROW_PERCENT, "confirmed_by_population_grow_percent", "eu")
-    #output( countries, days, dir+OUT_RECOVERED_BY_POPULATION_GROW_PERCENT, "recovered_by_population_grow_percent")
+    output( countries, days, dir+OUT_RECOVERED_BY_POPULATION_GROW_PERCENT, "recovered_by_population_grow_percent", "eu")
     output( countries, days, dir+OUT_DEATHS_BY_POPULATION_GROW_PERCENT, "deaths_by_population_grow_percent", "eu")
 
 
