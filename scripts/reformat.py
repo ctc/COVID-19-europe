@@ -47,7 +47,7 @@ countries_template = {
     "Russia": { "population": 146877088, "eu": True},
     "Germany": { "population": 82887000, "eu": True, "top5": True},
     "Turkey": { "population": 82003882, "eu": True},
-    "France": { "population": 67372000, "eu": True},
+    "France": { "population": 67372000, "eu": True, "top5": True},
     "United Kingdom": { "population": 66435550, "eu": True},
     "Italy": { "population": 60390560, "eu": True, "top5": True},
     "Spain": { "population": 46733038, "eu": True, "top5": True},
@@ -102,7 +102,7 @@ countries_template = {
     "Åland Islands": { "population": 29489, "eu": True},
     "Vatican City": { "population": 799, "eu": True},
     "US": { "population":  329968629, "top5": True},
-    "China": { "population":  1427647786, "top5": True}
+    "China": { "population":  1427647786}
 }
 
 confirmed_fixes_dict = {'Italy|2020-03-12': 15113,
