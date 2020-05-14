@@ -44,11 +44,11 @@ OUT_AUSTRIA = "/austria.csv"
 
 # https://en.wikipedia.org/wiki/List_of_European_countries_by_population
 countries_template = {
-    "Russia": { "population": 146877088, "eu": True},
-    "Germany": { "population": 82887000, "eu": True, "top5": True},
+    "Russia": { "population": 146877088, "eu": True, "top5": True},
+    "Germany": { "population": 82887000, "eu": True},
     "Turkey": { "population": 82003882, "eu": True},
-    "France": { "population": 67372000, "eu": True, "top5": True},
-    "United Kingdom": { "population": 66435550, "eu": True},
+    "France": { "population": 67372000, "eu": True},
+    "United Kingdom": { "population": 66435550, "eu": True, "top5": True},
     "Italy": { "population": 60390560, "eu": True, "top5": True},
     "Spain": { "population": 46733038, "eu": True, "top5": True},
     "Poland": { "population": 38433600, "eu": True},
