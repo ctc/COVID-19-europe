@@ -51,7 +51,7 @@ countries_template = {
     "France": { "population": 67372000, "eu": True},
     "United Kingdom": { "population": 66435550, "eu": True, "top5": True},
     "Italy": { "population": 60390560, "eu": True},
-    "Spain": { "population": 46733038, "eu": True, "top5": True},
+    "Spain": { "population": 46733038, "eu": True},
     "Poland": { "population": 38433600, "eu": True},
     "Ukraine": { "population": 37289000, "eu": True},
     "Romania": { "population": 19523621, "eu": True},
@@ -103,6 +103,7 @@ countries_template = {
     "Åland Islands": { "population": 29489, "eu": True},
     "Vatican City": { "population": 799, "eu": True},
     "US": { "population":  329968629, "top5": True},
+    "India": { "population":  1380004000, "top5": True},
     "China": { "population":  1427647786}
 }
 
