@@ -105,7 +105,8 @@ countries_template = {
     "US": { "population":  329968629, "top5": True},
     "India": { "population": 1380004000, "top5": True},
     "China": { "population": 1427647786},
-    "Peru": { "population": 31237385, "top5": True}
+    "Peru": { "population": 31237385},
+    "South Africa": { "population": 18216000, "top5": True}
 }
 
 confirmed_fixes_dict = {'Italy|2020-03-12': 15113,
