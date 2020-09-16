@@ -20,7 +20,7 @@ data source: https://github.com/CSSEGISandData/COVID-19
 </table>
 
 <div class="center">
-<iframe title="COVID-19 Austria per 100k growth (%)" aria-label="Interactive line chart" id="datawrapper-chart-4Rk8e" src="//datawrapper.dwcdn.net/4Rk8e/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
+<iframe title="COVID-19 Austria per 100k growth (%)" aria-label="Interactive line chart" id="datawrapper-chart-4Rk8e" src="https://datawrapper.dwcdn.net/4Rk8e/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}}))}();
 </script>
 </div>
 
@@ -39,7 +39,7 @@ data source: https://github.com/CSSEGISandData/COVID-19
 
 
 <div class="center">
-<iframe title="COVID-19 Austria growth (%)" aria-label="Interactive line chart" id="datawrapper-chart-pRVi6" src="//datawrapper.dwcdn.net/pRVi6/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
+<iframe title="COVID-19 Austria growth (%)" aria-label="Interactive line chart" id="datawrapper-chart-pRVi6" src="https://datawrapper.dwcdn.net/pRVi6/5/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}}))}();
 </script>
 </div>
 
@@ -58,7 +58,7 @@ data source: https://github.com/CSSEGISandData/COVID-19
 </table>
 
 <div class="center">
-<iframe title="COVID-19 Austria &amp; Neighbours confirmed per 100k growth (%)" aria-label="Interactive line chart" id="datawrapper-chart-9KjIs" src="//datawrapper.dwcdn.net/9KjIs/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
+<iframe title="COVID-19 Austria &amp;amp; Neighbours confirmed per 100k growth (%)" aria-label="Interactive line chart" id="datawrapper-chart-9KjIs" src="https://datawrapper.dwcdn.net/9KjIs/5/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}}))}();
 </script>
 </div>
 
@@ -76,7 +76,7 @@ data source: https://github.com/CSSEGISandData/COVID-19
 </table>
 
 <div class="center">
-<iframe title="COVID-19 Austria &amp; Neighbours confirmed growth (%)" aria-label="Interactive line chart" id="datawrapper-chart-rnOmS" src="//datawrapper.dwcdn.net/rnOmS/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
+<iframe title="COVID-19 Austria &amp;amp; Neighbours confirmed growth (%)" aria-label="Interactive line chart" id="datawrapper-chart-rnOmS" src="https://datawrapper.dwcdn.net/rnOmS/5/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}}))}();
 </script>
 </div>
 
@@ -95,7 +95,7 @@ data source: https://github.com/CSSEGISandData/COVID-19
 </table>
 
 <div class="center">
-<iframe title="COVID-19 Europe confirmed per 100k growth (%)" aria-label="Interactive line chart" id="datawrapper-chart-VtJng" src="//datawrapper.dwcdn.net/VtJng/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
+<iframe title="COVID-19 Europe confirmed per 100k growth (%)" aria-label="Interactive line chart" id="datawrapper-chart-VtJng" src="https://datawrapper.dwcdn.net/VtJng/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}}))}();
 </script>
 </div>
 
@@ -133,7 +133,7 @@ data source: https://github.com/CSSEGISandData/COVID-19
 </table>
 
 <div class="center">
-<iframe title="COVID-19 Top 5 confirmed per 100k growth (%)" aria-label="Interactive line chart" id="datawrapper-chart-EsaiT" src="//datawrapper.dwcdn.net/EsaiT/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
+<iframe title="COVID-19 Top 5 confirmed per 100k growth (%)" aria-label="Interactive line chart" id="datawrapper-chart-EsaiT" src="https://datawrapper.dwcdn.net/EsaiT/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}}))}();
 </script>
 </div>
 
@@ -151,6 +151,6 @@ data source: https://github.com/CSSEGISandData/COVID-19
 </table>
 
 <div class="center">
-<iframe title="COVID-19 Top 5 confirmed growth (%)" aria-label="Interactive line chart" id="datawrapper-chart-DMVXw" src="//datawrapper.dwcdn.net/DMVXw/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
+<iframe title="COVID-19 Top 5 confirmed growth (%)" aria-label="Interactive line chart" id="datawrapper-chart-DMVXw" src="https://datawrapper.dwcdn.net/DMVXw/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}}))}();
 </script>
 </div>
