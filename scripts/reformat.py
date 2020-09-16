@@ -105,8 +105,8 @@ countries_template = {
     "US": { "population":  329968629, "top5": True},
     "India": { "population": 1380004000, "top5": True},
     "China": { "population": 1427647786},
-    "Peru": { "population": 31237385},
-    "South Africa": { "population": 18216000, "top5": True}
+    "Peru": { "population": 31237385, "top5": True},
+    "South Africa": { "population": 18216000}
 }
 
 confirmed_fixes_dict = {'Italy|2020-03-12': 15113,
@@ -247,8 +247,12 @@ def extract( countries, fixes, data_in, type):
             else:
                 dates_total_grow_percent[day] = last_grow_percent
                 dates_by_population_grow_percent[day] = last_grow_percent_by_population
-                
-                
+            
+            if( dates_total_grow_percent[day] == 0):
+                dates_total_grow_percent[day] = ""
+            if( dates_by_population_grow_percent[day] == 0):
+                dates_by_population_grow_percent[day] = ""
+        
         countries[country][type+"_total"] = dates_total
         countries[country][type+"_total_grow_percent"] = dates_total_grow_percent
         if( countries[country]["population"] >= 100000): # filter out countries < 100.000 people
