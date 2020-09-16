@@ -248,11 +248,8 @@ def extract( countries, fixes, data_in, type):
                 dates_total_grow_percent[day] = last_grow_percent
                 dates_by_population_grow_percent[day] = last_grow_percent_by_population
             
-            if( dates_total_grow_percent[day] == 0):
-                dates_total_grow_percent[day] = ""
-            if( dates_by_population_grow_percent[day] == 0):
-                dates_by_population_grow_percent[day] = ""
-        
+        countries[country][type+"_total"] = dates_total
+        countries[country][type+"_total_grow_percent"] = dates_total_grow_percent        
         if( countries[country]["population"] >= 100000): # filter out countries < 100.000 people
             countries[country][type+"_by_population"] = dates_by_population
             countries[country][type+"_by_population_grow_percent"] = dates_by_population_grow_percent
