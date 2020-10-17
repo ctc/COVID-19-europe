@@ -42,6 +42,8 @@ OUT_TOP5_DEATHS_BY_POPULATION_GROW_PERCENT = "/top5_by_population_grow_percent_d
 
 OUT_AUSTRIA = "/austria.csv"
 
+PERCENT_AVERAGE = 7
+
 # https://en.wikipedia.org/wiki/List_of_European_countries_by_population
 countries_template = {
     "Russia": { "population": 146877088, "eu": True, "top5": True},
@@ -207,9 +209,11 @@ def extract( countries, fixes, data_in, type):
         
         dates_total = {}
         dates_total_grow_percent = {}
+        dates_total_grow_percent_data = [0] * PERCENT_AVERAGE
         dates_by_population = {}
         dates_by_population_grow_percent = {}
-                
+        dates_by_population_grow_percent_data = [0] * PERCENT_AVERAGE
+        
         last_data = 0
         last_data_by_population = 0
         last_grow_percent = 0
@@ -231,22 +235,28 @@ def extract( countries, fixes, data_in, type):
                     
             if( dates_total[day] != ""):
                 if( last_data != 0):
-                    dates_total_grow_percent[day] = (dates_total[day] - last_data) / last_data * 100
+                    #dates_total_grow_percent[day] = (dates_total[day] - last_data) / last_data * 100
+                    ( dates_total_grow_percent[day], dates_total_grow_percent_data) = calc_percent( (dates_total[day] - last_data) / last_data * 100, dates_total_grow_percent_data)
                     last_grow_percent = dates_total_grow_percent[day]
                             
-                    dates_by_population_grow_percent[day] = (dates_by_population[day] - last_data_by_population) / last_data_by_population * 100
+                    #dates_by_population_grow_percent[day] = (dates_by_population[day] - last_data_by_population) / last_data_by_population * 100
+                    ( dates_by_population_grow_percent[day], dates_by_population_grow_percent_data) = calc_percent( (dates_by_population[day] - last_data_by_population) / last_data_by_population * 100, dates_by_population_grow_percent_data)
                     last_grow_percent_by_population = dates_by_population_grow_percent[day]
                 else:
-                    dates_total_grow_percent[day] = 0
+                    #dates_total_grow_percent[day] = 0
+                    ( dates_total_grow_percent[day], dates_total_grow_percent_data) = calc_percent( 0, dates_total_grow_percent_data)
                     last_grow_percent = 0
                             
-                    dates_by_population_grow_percent[day] = 0
+                    #dates_by_population_grow_percent[day] = 0
+                    ( dates_by_population_grow_percent[day], dates_by_population_grow_percent_data) = calc_percent( 0, dates_by_population_grow_percent_data)
                     last_grow_percent_by_population = 0
                 last_data = dates_total[day]
                 last_data_by_population = dates_by_population[day]
             else:
-                dates_total_grow_percent[day] = last_grow_percent
-                dates_by_population_grow_percent[day] = last_grow_percent_by_population
+                #dates_total_grow_percent[day] = last_grow_percent
+                ( dates_total_grow_percent[day], dates_total_grow_percent_data) = calc_percent( last_grow_percent, dates_total_grow_percent_data)
+                #dates_by_population_grow_percent[day] = last_grow_percent_by_population
+                ( dates_by_population_grow_percent[day], dates_by_population_grow_percent_data) = calc_percent( last_grow_percent_by_population, dates_by_population_grow_percent_data)
         
             if( dates_total_grow_percent[day] > 10):
                 dates_total_grow_percent[day] = 10
@@ -260,6 +270,14 @@ def extract( countries, fixes, data_in, type):
             countries[country][type+"_by_population_grow_percent"] = dates_by_population_grow_percent
             
     return countries, days
+
+def calc_percent( percent, previous):
+
+    previous.insert(0,percent)
+    del previous[-1:]
+    
+    return (sum(previous)/PERCENT_AVERAGE, previous)
+    
 
 def output( countries, days, data_out, type, filter):
     
