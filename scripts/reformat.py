@@ -235,27 +235,21 @@ def extract( countries, fixes, data_in, type):
                     
             if( dates_total[day] != ""):
                 if( last_data != 0):
-                    #dates_total_grow_percent[day] = (dates_total[day] - last_data) / last_data * 100
                     ( dates_total_grow_percent[day], dates_total_grow_percent_data) = calc_percent( (dates_total[day] - last_data) / last_data * 100, dates_total_grow_percent_data)
                     last_grow_percent = dates_total_grow_percent[day]
                             
-                    #dates_by_population_grow_percent[day] = (dates_by_population[day] - last_data_by_population) / last_data_by_population * 100
                     ( dates_by_population_grow_percent[day], dates_by_population_grow_percent_data) = calc_percent( (dates_by_population[day] - last_data_by_population) / last_data_by_population * 100, dates_by_population_grow_percent_data)
                     last_grow_percent_by_population = dates_by_population_grow_percent[day]
                 else:
-                    #dates_total_grow_percent[day] = 0
                     ( dates_total_grow_percent[day], dates_total_grow_percent_data) = calc_percent( 0, dates_total_grow_percent_data)
                     last_grow_percent = 0
                             
-                    #dates_by_population_grow_percent[day] = 0
                     ( dates_by_population_grow_percent[day], dates_by_population_grow_percent_data) = calc_percent( 0, dates_by_population_grow_percent_data)
                     last_grow_percent_by_population = 0
                 last_data = dates_total[day]
                 last_data_by_population = dates_by_population[day]
             else:
-                #dates_total_grow_percent[day] = last_grow_percent
                 ( dates_total_grow_percent[day], dates_total_grow_percent_data) = calc_percent( last_grow_percent, dates_total_grow_percent_data)
-                #dates_by_population_grow_percent[day] = last_grow_percent_by_population
                 ( dates_by_population_grow_percent[day], dates_by_population_grow_percent_data) = calc_percent( last_grow_percent_by_population, dates_by_population_grow_percent_data)
         
             if( dates_total_grow_percent[day] > 10):
