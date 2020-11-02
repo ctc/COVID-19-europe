@@ -50,7 +50,7 @@ countries_template = {
     "Brazil": { "population": 208360000, "eu": False, "top5": True},
     "Germany": { "population": 82887000, "eu": True},
     "Turkey": { "population": 82003882, "eu": True},
-    "France": { "population": 67372000, "eu": True},
+    "France": { "population": 67372000, "eu": True, "top5": True},
     "United Kingdom": { "population": 66435550, "eu": True},
     "Italy": { "population": 60390560, "eu": True},
     "Spain": { "population": 46733038, "eu": True},
@@ -109,7 +109,7 @@ countries_template = {
     "China": { "population": 1427647786},
     "Peru": { "population": 31237385},
     "South Africa": { "population": 18216000},
-    "Argentina": { "population": 44694198, "top5": True}
+    "Argentina": { "population": 44694198}
 }
 
 confirmed_fixes_dict = {'Italy|2020-03-12': 15113,
