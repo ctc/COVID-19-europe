@@ -47,10 +47,10 @@ PERCENT_AVERAGE = 7
 # https://en.wikipedia.org/wiki/List_of_European_countries_by_population
 countries_template = {
     "Russia": { "population": 146877088, "eu": True, "top5": True},
-    "Brazil": { "population": 208360000, "eu": False, "top5": True},
-    "Germany": { "population": 82887000, "eu": True},
+    "Brazil": { "population": 208360000, "eu": False},
+    "Germany": { "population": 82887000, "eu": True, "top5": True},
     "Turkey": { "population": 82003882, "eu": True},
-    "France": { "population": 67372000, "eu": True},
+    "France": { "population": 67372000, "eu": True, "top5": True},
     "United Kingdom": { "population": 66435550, "eu": True, "top5": True},
     "Italy": { "population": 60390560, "eu": True},
     "Spain": { "population": 46733038, "eu": True},
@@ -105,7 +105,7 @@ countries_template = {
     "Åland Islands": { "population": 29489, "eu": True},
     "Vatican City": { "population": 799, "eu": True},
     "US": { "population":  329968629, "top5": True},
-    "India": { "population": 1380004000, "top5": True},
+    "India": { "population": 1380004000},
     "China": { "population": 1427647786},
     "Peru": { "population": 31237385},
     "South Africa": { "population": 18216000},
